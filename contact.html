@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Contact Form</title>
+    <link rel="stylesheet" type="text/css" href="mystyle.css">
+</head>
+<body>
+    <h1 id="header">Contact Us</h1>
+    <form method="GET" action="./save_contact.php">
+        <table>
+            <tr>
+                <td><label for="name" class="label">Name:</label></td>
+                <td><input type="text" id="name" name="name" class="input" required></td>
+            </tr>
+            <tr>
+                <td><label class="label">Gender:</label></td>
+                <td>
+                    <input type="radio" id="male" name="gender" value="male" class="radio">
+                    <label for="male" class="radio-label">Male</label>
+                    <input type="radio" id="female" name="gender" value="female" class="radio">
+                    <label for="female" class="radio-label">Female</label>
+                </td>
+            </tr>
+            <tr>
+                <td><label for="interests" class="label">Interests:</label></td>
+                <td>
+                    <input type="checkbox" id="music" name="interests[]" value="music" class="checkbox">
+                    <label for="music" class="checkbox-label">Music</label>
+                    <input type="checkbox" id="sports" name="interests[]" value="sports" class="checkbox">
+                    <label for="sports" class="checkbox-label">Sports</label>
+                    <input type="checkbox" id="books" name="interests[]" value="books" class="checkbox">
+                    <label for="books" class="checkbox-label">Books</label>
+                </td>
+            </tr>
+        </table>
+        <br>
+        <input type="submit" value="Submit" class="submit-button">
+    </form>
+</body>
+</html>
