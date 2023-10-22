@@ -1,8 +1,8 @@
 function getDataFromForm() {
   const firstName = document.getElementById("fname").value;
   const lastName = document.getElementById("lname").value;
-  alert("it worked!");
   runAjax(firstName, lastName);
+  alert("it worked!");
 }
 
 function runAjax(fname, lname) {
