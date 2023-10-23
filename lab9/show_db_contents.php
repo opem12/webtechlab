@@ -5,7 +5,7 @@ ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
 $db_host="privatelink.mysql.database.azure.com";        //Change this
-$db_user="opeyemi";        //Change this
+$db_user="opeyemi1";        //Change this
 $db_pass="webtech";        //Change this
 $db_name="z_url_set_1";     //Do not change
 
