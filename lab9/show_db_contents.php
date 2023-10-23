@@ -4,7 +4,7 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
-$db_host="opeyemivxp.azurewebsites.net";        //Change this
+$db_host="ope1.database.windows.net";        //Change this
 $db_user="opeyemi1";        //Change this
 $db_pass="webtech";        //Change this
 $db_name="z_url_set_1";     //Do not change
