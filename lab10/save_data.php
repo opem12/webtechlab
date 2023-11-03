@@ -1,18 +1,13 @@
 <?php
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $firstName = $_POST['first_name'];
-    $lastName = $_POST['last_name'];
-    $data = $firstName . ' ' . $lastName . "\n";
-    
-    $filePath = 'non_public/data.txt'; // Define the path to your non-public folder.
-    
-    // Append data to the file.
-    if (file_put_contents($filePath, $data, FILE_APPEND | LOCK_EX) !== false) {
-        echo 'Data saved successfully.';
-    } else {
-        echo 'Error saving data.';
-    }
-} else {
-    echo 'Invalid request.';
+$filepath = "/home/opeyemivxp/webtechsavedata/data.txt";
+
+$filecontent = file($filepath, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
+
+echo "<ul>";
+
+foreach ( $filecontent as $line ) {
+    echo"". $line ."";
 }
+echo"</ul>";
+
 ?>
