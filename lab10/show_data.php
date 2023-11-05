@@ -1,26 +1,29 @@
 <?php
-// Read the contents of the user_data.txt file
-$data = file_get_contents('opeyemivxp.azurewebsites.net');
+// Check if the post request contains first and last name
+if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['first_name']) && isset($_POST['last_name'])) {
+    $first_name = $_POST['first_name'];
+    $last_name = $_POST['last_name'];
 
-// Check if the file contains data
-if ($data) {
-    // Split the data into an array of lines
-    $lines = explode("\n", $data);
+    // Create and append data to a file in the private directory
+    $data = "$first_name,$last_name\n";
+    $filename = '/var/www/html/opeyemivxp.azurewebsites.net/non-public-folder/data.txt';
 
-    // Display the data in a table format
-    echo "<table>";
-    echo "<tr><th>First Name</th><th>Last Name</th></tr>";
-
-    foreach ($lines as $line) {
-        $parts = explode(",", $line);
-        $firstName = $parts[0];
-        $lastName = $parts[1];
-
-        echo "<tr><td>$firstName</td><td>$lastName</td></tr>";
+    // Check if the directory exists
+    if (!is_dir('private')) {
+        mkdir('private');
     }
 
-    echo "</table>";
+    // Open the file for appending
+    $file = fopen($filename, 'a');
+
+    // Write the data to the file
+    fwrite($file, $data);
+
+    // Close the file
+    fclose($file);
+
+    echo "Data saved to $filename";
 } else {
-    echo "No data found in the user_data.txt file.";
+    echo "Error: Missing first and last name in the POST request.";
 }
 ?>
