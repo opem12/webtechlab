@@ -1,5 +1,5 @@
 <?php
-$filePath = 'non-public-folder/data.txt'; // Define the path to your non-public folder.
+$filePath = 'data/data.txt'; // Define the path to your non-public folder.
 if (file_exists($filePath)) {
     $fileContent = file($filePath, FILE_IGNORE_NEW_LINES);
     if (!empty($fileContent)) {
