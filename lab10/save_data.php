@@ -1,29 +1,16 @@
 <?php
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Get the first and last names from the form
     $firstName = $_POST['first_name'];
     $lastName = $_POST['last_name'];
-
-    // Create a data string to write to the file
     $data = $firstName . ' ' . $lastName . "\n";
-
-    // Specify the path to the non-public folder where the data will be stored
-    $filePath = '/var/www/html/opeyemivxp.azurewebsites.net/non-public-folder/data.txt';
-
-    // Open the file for appending
-    $file = fopen($filePath, 'a');
-
-    if ($file) {
-        // Write the data to the file
-        fwrite($file, $data);
-
-        // Close the file
-        fclose($file);
-
+    
+    $filePath = '/var/www/html/opeyemivxp.azurewebsites.net/non-public-folder/data.txt'; // Define the path to your non-public folder.
+    
+    // Append data to the file.
+    if (file_put_contents($filePath, $data, FILE_APPEND | LOCK_EX) !== false) {
         echo 'Data saved successfully.';
-        include('readdata.php');
     } else {
-        echo 'Failed to open the file for writing.';
+        echo 'Error saving data.';
     }
 } else {
     echo 'Invalid request.';
