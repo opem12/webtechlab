@@ -1,6 +1,6 @@
 <?php
 // Read the contents of the user_data.txt file
-$data = file_get_contents('private/user_data.txt');
+$data = file_get_contents('/var/www/html/opeyemivxp.azurewebsites.net/non-public-folder/data.txt');
 
 // Check if the file contains data
 if ($data) {
