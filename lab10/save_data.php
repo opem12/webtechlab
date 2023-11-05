@@ -1,29 +1,31 @@
 <?php
-// Check if the post request contains first and last name
-if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['first_name']) && isset($_POST['last_name'])) {
-    $first_name = $_POST['first_name'];
-    $last_name = $_POST['last_name'];
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    // Get the first and last names from the form
+    $firstName = $_POST['first_name'];
+    $lastName = $_POST['last_name'];
 
-    // Create and append data to a file in the private directory
-    $data = "$first_name,$last_name\n";
-    $filename = '/var/www/html/opeyemivxp.azurewebsites.net/non-public-folder/data.txt';
+    // Create a data string to write to the file
+    $data = $firstName . ' ' . $lastName . "\n";
 
-    // Check if the directory exists
-    if (!is_dir('private')) {
-        mkdir('private');
-    }
+    // Specify the path to the non-public folder where the data will be stored
+    $filePath = '/var/www/html/opeyemivxp.azurewebsites.net/non-public-folder/data.txt';
 
     // Open the file for appending
-    $file = fopen($filename, 'a');
+    $file = fopen($filePath, 'a');
 
-    // Write the data to the file
-    fwrite($file, $data);
+    if ($file) {
+        // Write the data to the file
+        fwrite($file, $data);
 
-    // Close the file
-    fclose($file);
+        // Close the file
+        fclose($file);
 
-    echo "Data saved to $filename";
+        echo 'Data saved successfully.';
+        include('readdata.php');
+    } else {
+        echo 'Failed to open the file for writing.';
+    }
 } else {
-    echo "Error: Missing first and last name in the POST request.";
+    echo 'Invalid request.';
 }
 ?>
