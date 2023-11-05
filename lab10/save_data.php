@@ -1,31 +1,29 @@
 <?php
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Get the first and last names from the form
-    $firstName = $_POST['first_name'];
-    $lastName = $_POST['last_name'];
+// Check if the post request contains first and last name
+if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['first_name']) && isset($_POST['last_name'])) {
+    $first_name = $_POST['first_name'];
+    $last_name = $_POST['last_name'];
 
-    // Create a data string to write to the file
-    $data = $firstName . ' ' . $lastName . "\n";
+    // Create and append data to a file in the private directory
+    $data = "$first_name,$last_name\n";
+    $filename = 'private/user_data.txt';
 
-    // Specify the path to the non-public folder where the data will be stored
-    $filePath = '/var/www/html/your-website/non-public-folder/data.txt';
+    // Check if the directory exists
+    if (!is_dir('private')) {
+        mkdir('private');
+    }
 
     // Open the file for appending
-    $file = fopen($filePath, 'a');
+    $file = fopen($filename, 'a');
 
-    if ($file) {
-        // Write the data to the file
-        fwrite($file, $data);
+    // Write the data to the file
+    fwrite($file, $data);
 
-        // Close the file
-        fclose($file);
+    // Close the file
+    fclose($file);
 
-        echo 'Data saved successfully.';
-        include('show_contents.php');
-    } else {
-        echo 'Failed to open the file for writing.';
-    }
+    echo "Data saved to $filename";
 } else {
-    echo 'Invalid request.';
+    echo "Error: Missing first and last name in the POST request.";
 }
 ?>
