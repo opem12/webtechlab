@@ -1,14 +1,26 @@
 <?php
-// Specify the path to the data file
-$filePath = '/var/www/html/opeyemivxp.azurewebsites.net/non-public-folder/data.txt';
+// Read the contents of the user_data.txt file
+$data = file_get_contents('private/user_data.txt');
 
-// Read the data from the file into an array
-$dataArray = file($filePath, FILE_IGNORE_NEW_LINES);
+// Check if the file contains data
+if ($data) {
+    // Split the data into an array of lines
+    $lines = explode("\n", $data);
 
-// Create an HTML table to display the data
-echo '<table>';
-foreach ($dataArray as $data) {
-    echo '<tr><td>' . $data . '</td></tr>';
+    // Display the data in a table format
+    echo "<table>";
+    echo "<tr><th>First Name</th><th>Last Name</th></tr>";
+
+    foreach ($lines as $line) {
+        $parts = explode(",", $line);
+        $firstName = $parts[0];
+        $lastName = $parts[1];
+
+        echo "<tr><td>$firstName</td><td>$lastName</td></tr>";
+    }
+
+    echo "</table>";
+} else {
+    echo "No data found in the user_data.txt file.";
 }
-echo '</table>';
 ?>
