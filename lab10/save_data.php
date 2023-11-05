@@ -4,7 +4,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $lastName = $_POST['last_name'];
     $data = $firstName . ' ' . $lastName . "\n";
     
-    $filePath = '/home/opeyemivxp/webtechsavedata/data.txt'; // Define the path to your non-public folder.
+    $filePath = 'non-public-folder/data.txt'; // Define the path to your non-public folder.
     
     // Append data to the file.
     if (file_put_contents($filePath, $data, FILE_APPEND | LOCK_EX) !== false) {
