@@ -6,7 +6,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['first_name']) && isset
 
     // Create and append data to a file in the private directory
     $data = "$first_name,$last_name\n";
-    $filename = 'private/user_data.txt';
+    $filename = '/var/www/html/opeyemivxp.azurewebsites.net/non-public-folder/data.txt';
 
     // Check if the directory exists
     if (!is_dir('private')) {
